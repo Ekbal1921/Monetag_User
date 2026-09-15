@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Abir Official</title>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <!-- Firebase Integration -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+    import { getDatabase, ref, get, set, update, push, onValue } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzJ184egrS5dBgjhxbJUrC7RUwOT5Gv3c",
+      authDomain: "monetag-webapp.firebaseapp.com",
+      databaseURL: "https://monetag-webapp-default-rtdb.firebaseio.com/",
+      projectId: "monetag-webapp",
+      storageBucket: "monetag-webapp.firebasestorage.app",
+      messagingSenderId: "721185625441",
+      appId: "1:721185625441:web:f93025cd4eaa0b6e8ba120",
+      measurementId: "G-W5M9JG571C"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.fb = { db, ref, get, set, update, push, onValue };
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
+  <meta name="google-adsense-platform-domain" content="blogspot.com">
+
+  <style>
+*{box-sizing:border-box;font-family:'Roboto',sans-serif;margin:0;padding:0}
+:root{
+  --primary:#1687ff;
+  --primary2:#6c5ce7;
+  --cyan:#00c6ff;
+  --text:#172033;
+  --muted:#718096;
+  --card:rgba(255,255,255,.94);
+  --border:rgba(255,255,255,.72);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at 10% 0%,rgba(22,135,255,.13),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(108,92,231,.12),transparent 28%),
+    linear-gradient(145deg,#f7fbff,#eef4ff 52%,#f9f7ff);
+  padding:22px 14px;
+  color:var(--text);
+  transition:background .3s,color .3s;
+  min-height:100vh;
+  position:relative;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.45),transparent 65%);
+  opacity:.45;
+}
+.container{
+  max-width:500px;
+  margin:34px auto 18px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:30px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  box-shadow:0 24px 70px rgba(32,64,120,.16),0 4px 18px rgba(32,64,120,.08);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.container:before{
+  content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+  background:rgba(22,135,255,.08);top:-160px;right:-110px;pointer-events:none;
+}
+.container:after{
+  content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+  background:rgba(108,92,231,.07);bottom:-150px;left:-120px;pointer-events:none;
+}
+.dark-mode{
+  background:
+    radial-gradient(circle at 10% 0%,rgba(22,135,255,.16),transparent 30%),
+    linear-gradient(145deg,#0b1220,#101827 55%,#111329);
+}
+.dark-mode .container{
+  background:rgba(18,26,42,.88);
+  border-color:rgba(255,255,255,.08);
+  box-shadow:0 24px 70px rgba(0,0,0,.42);
+}
+h1{color:var(--primary);font-size:28px;margin-bottom:10px}
+.admin-link{
+  margin:12px 4px 5px;display:block;color:#526174;text-decoration:none;
+  font-weight:700;font-size:14px;transition:.2s
+}
+.admin-link:hover{color:var(--primary)}
+.dark-mode .admin-link{color:#b9c4d5}
+
+.telegram-profile-card{
+  margin:0 0 14px;padding:22px 16px 17px;border-radius:24px;
+  background:
+    radial-gradient(circle at 82% 10%,rgba(255,255,255,.22),transparent 24%),
+    linear-gradient(135deg,#087fc1 0%,#087dcc 42%,#5b5ce2 100%);
+  color:#fff;box-shadow:0 14px 32px rgba(20,104,190,.27);
+  text-align:center;overflow:hidden;position:relative;
+  border:1px solid rgba(255,255,255,.25);
+}
+.telegram-profile-card:before{
+  content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+  background:rgba(255,255,255,.09);top:-115px;right:-60px;
+}
+.telegram-profile-card:after{
+  content:"";position:absolute;width:150px;height:150px;border-radius:50%;
+  background:rgba(255,255,255,.07);bottom:-95px;left:-55px;
+}
+.telegram-profile-content{position:relative;z-index:2}
+.tg-photo{
+  width:92px;height:92px;aspect-ratio:1/1;border-radius:50%;object-fit:cover;
+  display:block;margin:0 auto 10px;border:4px solid rgba(255,255,255,.98);
+  box-shadow:0 8px 24px rgba(0,0,0,.25);background:#fff;
+}
+.tg-name{font-size:21px;font-weight:800;margin-bottom:3px;letter-spacing:.1px}
+.tg-username{font-size:13px;opacity:.9;margin-bottom:7px}
+.tg-userid{
+  display:inline-block;font-size:11px;font-weight:700;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.16);
+  padding:4px 11px;border-radius:999px;margin-bottom:8px;letter-spacing:.25px
+}
+.tg-status{font-size:12px;opacity:.92;margin-bottom:11px}
+.telegram-login{display:flex;justify-content:center;align-items:center;min-height:44px}
+.tg-login-message{font-size:13px;opacity:.9;margin-top:5px}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}
+.stat-card{
+  position:relative;padding:13px 9px 12px;border-radius:18px;
+  background:linear-gradient(145deg,#fff,#f4f8ff);
+  border:1px solid rgba(31,111,235,.09);
+  box-shadow:0 7px 20px rgba(39,79,135,.09);
+  text-align:center;overflow:hidden;transition:.25s
+}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(39,79,135,.14)}
+.stat-card:before{
+  content:"";position:absolute;top:0;left:14%;right:14%;height:3px;
+  border-radius:0 0 8px 8px;background:linear-gradient(90deg,#1687ff,#00c6ff)
+}
+.stat-icon{font-size:20px;display:block;margin-bottom:3px}
+.stat-label{font-size:10px;font-weight:800;color:#7b8798;text-transform:uppercase;letter-spacing:.55px;margin-bottom:4px}
+.stat-value{font-size:22px;font-weight:800;color:#087cf0;line-height:1}
+.stat-card.green:before{background:linear-gradient(90deg,#10a95b,#61df91)}
+.stat-card.green .stat-value{color:#0a9a50}
+.dark-mode .stat-card{background:linear-gradient(145deg,#182235,#121a29);border-color:rgba(255,255,255,.06);box-shadow:0 7px 20px rgba(0,0,0,.28)}
+.dark-mode .stat-label{color:#9ba8ba}
+
+.button,#joinChannelBtn,.submit-btn{
+  position:relative;overflow:hidden;width:100%;border:none;cursor:pointer;
+  color:#fff;font-weight:800;letter-spacing:.1px;
+  transition:transform .2s,box-shadow .2s,filter .2s
+}
+.button{
+  background:linear-gradient(135deg,#087ff0,#5b5ce2);
+  padding:13px 18px;margin:7px 0;border-radius:14px;font-size:15px;
+  box-shadow:0 8px 18px rgba(35,103,210,.2)
+}
+.button:before,#joinChannelBtn:before,.submit-btn:before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.22) 50%,transparent 75%);
+  transform:translateX(-120%);transition:transform .55s
+}
+.button:hover:enabled,.submit-btn:hover,#joinChannelBtn:hover{
+  transform:translateY(-2px);filter:saturate(1.06);
+  box-shadow:0 12px 24px rgba(35,103,210,.28)
+}
+.button:hover:before,#joinChannelBtn:hover:before,.submit-btn:hover:before{transform:translateX(120%)}
+.button:disabled{background:linear-gradient(135deg,#8b95a5,#697384);cursor:not-allowed;box-shadow:none;transform:none}
+#joinChannelBtn{
+  background:linear-gradient(135deg,#0088cc,#1678db);
+  padding:13px 16px;margin:8px 0;border-radius:14px;font-size:14px;
+  box-shadow:0 8px 18px rgba(0,136,204,.22)
+}
+
+#withdrawForm{
+  margin:10px 0 4px;display:none!important;
+  background:linear-gradient(145deg,#effff8,#e8f6ff);
+  padding:18px;border-radius:20px;border:1px solid rgba(22,135,255,.1);
+  box-shadow:0 10px 28px rgba(0,100,120,.11);
+  text-align:left;max-width:440px;margin-left:auto;margin-right:auto;
+  font-weight:600;color:#174e58;font-size:15px
+}
+#withdrawForm.withdraw-open{display:block!important}
+#withdrawForm label{margin-top:10px;color:#197b83;font-weight:800;display:block}
+#withdrawForm select,#withdrawForm input{
+  width:100%;padding:11px 13px;margin-top:6px;border:1px solid #a9cfd3;
+  border-radius:11px;font-size:15px;font-weight:500;color:#164c55;
+  background:#fff;transition:border-color .2s,box-shadow .2s
+}
+#withdrawForm select:focus,#withdrawForm input:focus{
+  outline:none;border-color:#20a8b4;box-shadow:0 0 0 4px rgba(32,168,180,.12)
+}
+.submit-btn{
+  background:linear-gradient(135deg,#10a65a,#18bf78);
+  padding:13px;width:100%;border-radius:13px;font-size:16px;margin-top:17px;
+  box-shadow:0 8px 18px rgba(16,166,90,.22)
+}
+
+.toggle-mode{
+  position:absolute;top:10px;right:10px;background:rgba(30,43,64,.9);
+  color:#fff;padding:7px 11px;border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;cursor:pointer;font-size:12px;font-weight:700;z-index:10;
+  transition:.25s;box-shadow:0 5px 15px rgba(0,0,0,.12)
+}
+.dark-mode .toggle-mode{background:#f1f5f9;color:#111827}
+
+.footer{margin-top:13px;font-size:12px;color:#8792a3}
+.dark-mode .footer{color:#8996a9}
+
+.popup-overlay{
+  position:fixed;inset:0;background:rgba(7,14,28,.68);backdrop-filter:blur(8px);
+  display:none;justify-content:center;align-items:center;z-index:2000;padding:15px
+}
+.popup-box{
+  background:linear-gradient(145deg,#101827,#172338);color:#fff;padding:24px;
+  border-radius:22px;width:92%;max-width:400px;text-align:center;
+  border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 70px rgba(0,0,0,.4);
+  animation:fadeIn .35s ease
+}
+.popup-box h2{color:#ffd54a;margin-bottom:12px}
+.popup-box p{line-height:1.6;margin:8px 0;font-size:13px;color:#e6edf7}
+.popup-box button{
+  background:linear-gradient(135deg,#087ff0,#5b5ce2);border:none;padding:11px 22px;
+  border-radius:10px;color:#fff;cursor:pointer;font-size:15px;font-weight:800;margin-top:15px
+}
+@keyframes fadeIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+
+@media(max-width:420px){
+  body{padding:12px 9px}
+  .container{padding:10px;margin-top:32px;border-radius:25px}
+  .telegram-profile-card{padding:19px 13px 15px;border-radius:21px}
+  .tg-photo{width:82px;height:82px}
+  .tg-name{font-size:19px}
+  .button{font-size:14px;padding:12px 14px;border-radius:13px}
+  #joinChannelBtn{font-size:13px;padding:12px 12px}
+  .stats{gap:8px}
+}
+</style>
+</head>
+
+<body>
+
+  <div id="welcomePopup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>স্বাগতম! 🔥</h2>
+      <p>আসসালামু আলাইকুম, সততার সাথে পেমেন্ট করাচ্ছি। নিয়ম মেনে কাজ করলে ১০০% পেমেন্ট পাবেন ইনশাআল্লাহ 🔥</p>
+      <p>💖 প্রতিদিন বিজ্ঞাপন দেখার সুযোগ</p>
+      <p>🔥 এই সাইটে কোন ইনভেস্ট করতে হবে না, সম্পূর্ণ ফ্রিতে ইনকাম করতে পারবেন।</p>
+      <p>📌 ১০০% পেমেন্ট গ্যারান্টি<br>😊 বিকাশ, নগদ</p>
+      <p>~ কাজ করার ক্ষেত্রে নিয়ম মেনে কাজ করুন এবং টেলিগ্রাম চ্যানেলে যুক্ত থাকুন ✅</p>
+      <button id="closePopup">বুঝেছি</button>
+    </div>
+  </div>
+
+  <button class="toggle-mode" onclick="toggleMode()">🌙 Dark Mode</button>
+
+  <div class="container">
+    <div class="telegram-profile-card">
+      <div class="telegram-profile-content">
+        <img id="tgProfilePhoto" class="tg-photo" src="data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'><circle cx='44' cy='44' r='44' fill='%230088cc'/><text x='44' y='53' text-anchor='middle' font-family='Arial' font-size='34' fill='white'>TG</text></svg>" alt="Telegram Profile">
+        <div class="tg-name" id="tgProfileName">Telegram User</div>
+        <div class="tg-username" id="tgProfileUsername">Telegram account connect করুন</div>
+        <div class="tg-userid" id="tgProfileUserId" style="display:none;">🆔 ID: —</div>
+        <div class="tg-status" id="tgProfileStatus">🔐 Telegram দিয়ে Login করুন</div>
+        <div class="telegram-login" id="telegramLogin">
+          <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="testmini322_bot" data-size="large" data-radius="10" data-userpic="true" data-request-access="write" data-onauth="onTelegramAuth(user)"></script>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <span class="stat-icon">👁️</span>
+        <div class="stat-label">Ads Seen</div>
+        <div class="stat-value" id="watched-ads">0</div>
+      </div>
+      <div class="stat-card green">
+        <span class="stat-icon">💰</span>
+        <div class="stat-label">Points</div>
+        <div class="stat-value" id="earned-points">0</div>
+      </div>
+    </div>
+
+    <button class="button ad-button" onclick="show_rewarded_ad()">🎥 Watch Ad & Earn 🎉</button>
+    <button class="button" id="autoShowBtn" onclick="startAutoShow()">▶️ Auto Show Ads</button>
+    <button class="button" id="stopShowBtn" onclick="stopAutoShow()" disabled>⏹️ Stop Show Ads</button>
+    <button class="button" onclick="toggleWithdraw()">💸 Withdraw</button>
+    <button class="button" onclick="resetStats()">♻️ Reset History</button>
+    <button id="joinChannelBtn" onclick="window.open('https://t.me/ojayer56molla', '_blank')">🔔 Join Our Telegram Channel</button>
+
+    <div id="withdrawForm">
+      <h2 style="text-align:center;font-size:22px;color:#1e88e5;font-weight:bold;margin-bottom:15px;">💰 Withdraw Your Amount</h2>
+      <label for="method">💳 Payment Method:</label>
+      <select id="method">
+        <option value="bKash">bKash</option>
+        <option value="Nagad">Nagad</option>
+        <option value="Rocket">Rocket</option>
+      </select>
+      <label for="number">📞 Account Number:</label>
+      <input type="text" id="number" placeholder="01XXXXXXXXX" required>
+      <label for="amount">💵 Amount (points):</label>
+      <input type="number" id="amount" placeholder="Enter amount" required>
+      <button class="submit-btn" onclick="submitWithdraw()">Send Request</button>
+    </div>
+
+    <a class="admin-link" href="https://t.me/ojayer56molla" target="_blank">🔗 Click To Contact Admin 📩</a>
+    <div class="footer">© 2025 ShajahanAbir 🌐</div>
+  </div>
+
+  <script src="//libtl.com/sdk.js" data-zone="11775507" data-sdk="show_11775507"></script>
+
+  <script>
+    const MIN_POINTS = 1000;
+    let adsWatched = parseInt(localStorage.getItem('adsWatched')) || 0;
+    let earnedPoints = parseInt(localStorage.getItem('earnedPoints')) || 0;
+    let autoShowInterval = null;
+
+    function getSavedUser() {
+      const saved = localStorage.getItem("telegramUser");
+      return saved ? JSON.parse(saved) : null;
+    }
+
+    function syncWithFirebase(user) {
+      if (!user || !user.id || !window.fb) return;
+      const userRef = window.fb.ref(window.fb.db, "users/" + user.id);
+
+      window.fb.onValue(userRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          adsWatched = Number(data.adsWatched || 0);
+          earnedPoints = Number(data.points ?? data.earnedPoints ?? 0);
+          updateStatsUI();
+        } else {
+          window.fb.set(userRef, {
+            first_name: user.first_name || "",
+            last_name: user.last_name || "",
+            username: user.username || "",
+            photo_url: user.photo_url || "",
+            adsWatched: adsWatched,
+            points: earnedPoints,
+            earnedPoints: earnedPoints,
+            joinedAt: Date.now()
+          });
+        }
+      });
+    }
+
+    function updateStatsUI() {
+      document.getElementById('watched-ads').textContent = adsWatched;
+      document.getElementById('earned-points').textContent = earnedPoints;
+      localStorage.setItem('adsWatched', adsWatched);
+      localStorage.setItem('earnedPoints', earnedPoints);
+    }
+
+    function updateStats() {
+      updateStatsUI();
+      const user = getSavedUser();
+      if (user && user.id && window.fb) {
+        window.fb.update(window.fb.ref(window.fb.db, "users/" + user.id), {
+          adsWatched: adsWatched,
+          points: earnedPoints,
+          earnedPoints: earnedPoints
+        });
+      }
+    }
+
+    function show_rewarded_ad() {
+      if (typeof show_11775507 !== "function") {
+        alert("❌ Advertisement system is not ready.");
+        return;
+      }
+      show_11775507().then(() => {
+        adsWatched++;
+        earnedPoints++;
+        updateStats();
+      }).catch(err => console.error('Ad show error:', err));
+    }
+
+    function startAutoShow() {
+      if (autoShowInterval) return;
+      autoShowInterval = setInterval(() => {
+        if (typeof show_11775507 !== "function") return;
+        show_11775507().then(() => {
+          adsWatched++;
+          earnedPoints++;
+          updateStats();
+        }).catch(err => console.error('Ad show error:', err));
+      }, 5000);
+
+      document.getElementById('autoShowBtn').disabled = true;
+      document.getElementById('stopShowBtn').disabled = false;
+    }
+
+    function stopAutoShow() {
+      if (autoShowInterval) {
+        clearInterval(autoShowInterval);
+        autoShowInterval = null;
+      }
+      document.getElementById('autoShowBtn').disabled = false;
+      document.getElementById('stopShowBtn').disabled = true;
+    }
+
+    function toggleWithdraw() {
+      const form = document.getElementById('withdrawForm');
+      const isOpen = form.classList.contains('withdraw-open');
+      if (isOpen) {
+        form.classList.remove('withdraw-open');
+        form.style.display = 'none';
+      } else {
+        form.classList.add('withdraw-open');
+        form.style.display = 'block';
+        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('method').value = 'bKash';
+        document.getElementById('number').value = '';
+        document.getElementById('amount').value = '';
+      }
+    }
+
+    function submitWithdraw() {
+      const user = getSavedUser();
+      if (!user || !user.id) {
+        alert("❌ Please connect your Telegram account first.");
+        return;
+      }
+
+      const method = document.getElementById('method').value;
+      const number = document.getElementById('number').value.trim();
+      const amount = parseInt(document.getElementById('amount').value);
+
+      if (!number.match(/^01[3-9]\d{8}$/)) {
+        alert("❌ Please enter a valid BD phone number (e.g., 01XXXXXXXXX)");
+        return;
+      }
+
+      if (isNaN(amount) || amount < MIN_POINTS) {
+        alert(`❌ Minimum withdraw amount is ${MIN_POINTS} points.`);
+        return;
+      }
+
+      if (amount > earnedPoints) {
+        alert("❌ You don't have enough points.");
+        return;
+      }
+
+      const withdrawRef = window.fb.ref(window.fb.db, 'withdrawals');
+      const newReq = window.fb.push(withdrawRef);
+
+      window.fb.set(newReq, {
+        userId: String(user.id),
+        username: user.username || "",
+        first_name: user.first_name || "",
+        method: method,
+        number: number,
+        amount: amount,
+        status: "pending",
+        createdAt: Date.now()
+      }).then(() => {
+        alert("✅ Withdrawal request submitted successfully!");
+        toggleWithdraw();
+      }).catch(err => {
+        alert("❌ Error: " + err.message);
+      });
+    }
+
+    function resetStats() {
+      if (confirm("⚠️ Are you sure you want to reset all ad history and points?")) {
+        adsWatched = 0;
+        earnedPoints = 0;
+        updateStats();
+        alert("✅ History has been reset successfully.");
+      }
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+      const isDark = document.body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDark);
+      document.querySelector('.toggle-mode').textContent = isDark ? "🌞 Light Mode" : "🌙 Dark Mode";
+    }
+
+    function makeDefaultAvatar(letter) {
+      const initial = (letter || "T").toString().trim().charAt(0).toUpperCase() || "T";
+      const svg = "<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88' viewBox='0 0 88 88'>" +
+        "<circle cx='44' cy='44' r='44' fill='%230088cc'/>" +
+        "<text x='44' y='56' text-anchor='middle' font-family='Arial' font-size='38' fill='white'>" + initial + "</text></svg>";
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    function setTelegramProfilePhoto(photoUrl, fallbackLetter) {
+      const img = document.getElementById("tgProfilePhoto");
+      if (!img) return;
+      img.onerror = function () {
+        img.onerror = null;
+        img.src = makeDefaultAvatar(fallbackLetter);
+      };
+      img.src = photoUrl || makeDefaultAvatar(fallbackLetter);
+    }
+
+    function renderTelegramProfile(user) {
+      const name = [user.first_name || "", user.last_name || ""].join(" ").trim();
+      setTelegramProfilePhoto(user.photo_url || "", (user.first_name || user.username || "T"));
+      document.getElementById("tgProfileName").textContent = name || "Telegram User";
+      document.getElementById("tgProfileUsername").textContent = user.username ? "@" + user.username : "Telegram User";
+
+      const idEl = document.getElementById("tgProfileUserId");
+      if (idEl && user.id) {
+        idEl.textContent = "🆔 ID: " + user.id;
+        idEl.style.display = "inline-block";
+      }
+
+      document.getElementById("tgProfileStatus").textContent = "✅ Telegram Account Connected";
+      const loginBox = document.getElementById("telegramLogin");
+      if (loginBox) loginBox.style.display = "none";
+
+      syncWithFirebase(user);
+    }
+
+    function onTelegramAuth(user) {
+      renderTelegramProfile(user);
+      localStorage.setItem("telegramUser", JSON.stringify(user));
+    }
+
+    function loadTelegramWebAppUser() {
+      const tg = window.Telegram && window.Telegram.WebApp;
+      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user;
+      if (!user) return false;
+      try { tg.ready(); tg.expand(); } catch (e) {}
+      renderTelegramProfile(user);
+      localStorage.setItem("telegramUser", JSON.stringify(user));
+      return true;
+    }
+
+    function loadTelegramProfile() {
+      const savedTelegramUser = localStorage.getItem("telegramUser");
+      if (!savedTelegramUser) return;
+      try {
+        renderTelegramProfile(JSON.parse(savedTelegramUser));
+      } catch (error) {
+        console.error("Telegram profile error:", error);
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const withdrawForm = document.getElementById('withdrawForm');
+      if (withdrawForm) {
+        withdrawForm.classList.remove('withdraw-open');
+        withdrawForm.style.display = 'none';
+      }
+      updateStatsUI();
+
+      if (!loadTelegramWebAppUser()) {
+        loadTelegramProfile();
+      }
+
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+        document.querySelector('.toggle-mode').textContent = "🌞 Light Mode";
+      }
+
+      if (!/android/i.test(navigator.userAgent)) {
+        document.querySelectorAll('.ad-button, #autoShowBtn, #stopShowBtn').forEach(btn => {
+          btn.disabled = true;
+          btn.textContent = "🚫 Ads not supported on iPhone/PC";
+        });
+      }
+    });
+
+    window.addEventListener("load", function() {
+      const popup = document.getElementById("welcomePopup");
+      if (popup) popup.style.display = "flex";
+    });
+
+    document.addEventListener("click", function(e) {
+      if (e.target && e.target.id === "closePopup") {
+        const popup = document.getElementById("welcomePopup");
+        if (popup) popup.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
